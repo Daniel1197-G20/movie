@@ -1,8 +1,10 @@
 
+
+
 import React, { useState } from "react";
 import MovieCard from "./component/MovieCard";
+import SearchIcon from "./search.svg";
 import "./App.css";
-import SearchBar from "./component/searchBar";
 
 const API_URL = "http://www.omdbapi.com?apikey=27c8ae17";
 
@@ -25,15 +27,28 @@ const App = () => {
 
   return (
     <div className="app">
-      <h1>ScreenVerse</h1>
+      <h1>Screen Verse</h1>
 
-     <SearchBar
-  searchMovies={searchMovies}
-  searchTerm={searchTerm} 
-  setSearchTerm={setSearchTerm}
-/>
-
-
+      <div className="search">
+        <input
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          placeholder="Search for movies"
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              searchMovies(searchTerm, true, 1);
+            }
+          }}
+        />
+        <img
+          src={SearchIcon}
+          alt="search"
+          title="Search"
+          tabIndex={0}
+          onClick={() => searchMovies(searchTerm, true, 1)}
+          style={{ cursor: "pointer" }}
+        />
+      </div>
 
       {movies?.length > 0 ? (
         <div className="container">
