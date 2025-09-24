@@ -24,7 +24,7 @@ const MovieCard = ({ movie }) => {
   const fztvseriesUrl = `https://fztvseries.live//search/${encodeURIComponent(
     Title
   )}`;
-  const awafimURL = `https://tv.awafim.com.ng/?s=${encodeURIComponent(Title)}`;
+  const awafimURL = `https://awafim.net/?s=${encodeURIComponent(Title)}`;
 
   // 🍿 Feature: Trailer Preview
   const [showTrailer, setShowTrailer] = useState(false);
@@ -154,7 +154,7 @@ const MovieCard = ({ movie }) => {
                 FzTVSeries
               </a>
               <a href={awafimURL} target="_blank" rel="noopener noreferrer">
-                Awafim
+                MkvCage
               </a>
             </div>
           </div>

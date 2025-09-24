@@ -16,7 +16,6 @@ const SearchBar = ({ searchMovies }) => {
   };
 
   return (
-    
     <div className="search-container">
          <div className="search">
         <input
