@@ -1,12 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 
 const MovieCard = ({ movie }) => {
   const { imdbID, Year, Poster, Title, Type } = movie;
 
   const imdbUrl = `https://www.imdb.com/title/${imdbID}/`;
-  const youtubeUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(
-    Title + " full " + Type
-  )}`;
 
   // 🎬 Download sites for Movies
   const awafimUrl = `https://awafim.net/?s=${encodeURIComponent(Title)}`;
@@ -29,8 +26,70 @@ const MovieCard = ({ movie }) => {
   )}`;
   const awafimURL = `https://tv.awafim.com.ng/?s=${encodeURIComponent(Title)}`;
 
+  // 🍿 Feature: Trailer Preview
+  const [showTrailer, setShowTrailer] = useState(false);
+
   return (
     <div className="movie-card">
+      {/* 🎥 Trailer Popup */}
+      {showTrailer && (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100vw",
+            height: "100vh",
+            background: "rgba(0,0,0,0.9)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: 9999,
+          }}
+        >
+          <div
+            style={{
+              position: "relative",
+              width: "80%",
+              maxWidth: "720px",
+              background: "#000",
+              borderRadius: "10px",
+              overflow: "hidden",
+            }}
+          >
+            <button
+              onClick={() => setShowTrailer(false)}
+              style={{
+                position: "absolute",
+                top: 10,
+                right: 10,
+                background: "red",
+                color: "white",
+                border: "none",
+                padding: "6px 12px",
+                cursor: "pointer",
+                borderRadius: "6px",
+                zIndex: 1000,
+              }}
+            >
+              ✕ Close
+            </button>
+            <iframe
+              width="100%"
+              height="400"
+              src={`https://www.youtube.com/embed?listType=search&list=${encodeURIComponent(
+                Title + " trailer"
+              )}`}
+              title={`${Title} Trailer`}
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          </div>
+        </div>
+      )}
+
+      {/* 🎬 Movie Card Content */}
       <a
         href={imdbUrl}
         target="_blank"
@@ -55,19 +114,15 @@ const MovieCard = ({ movie }) => {
         </div>
       </a>
 
+      {/* 🎬 Actions (Trailer + Download only) */}
       <div
         className="movie-actions"
         style={{ marginTop: 8, display: "flex", gap: 8 }}
       >
-        {/* Stream Button */}
-        <a
-          href={youtubeUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn"
-        >
-          Stream
-        </a>
+        {/* ▶️ Trailer Preview Button */}
+        <button className="btn" onClick={() => setShowTrailer(true)}>
+          ▶ Watch Trailer
+        </button>
 
         {/* Conditional Downloads */}
         {Type === "movie" ? (
@@ -78,7 +133,7 @@ const MovieCard = ({ movie }) => {
                 Awafim
               </a>
               <a href={fzmoviesUrl} target="_blank" rel="noopener noreferrer">
-                Fzmovies 
+                Fzmovies
               </a>
               <a href={nkiriUrl} target="_blank" rel="noopener noreferrer">
                 Nkiri
