@@ -27,7 +27,7 @@ const MovieCard = ({ movie }) => {
   const fztvseriesUrl = `https://fztvseries.live//search/${encodeURIComponent(
     Title
   )}`;
-  const mkvCageUrl = `https://www.mkvcage.nl/?s=${encodeURIComponent(Title)}`;
+  const awafimURL = `https://awafim.net/?s=${encodeURIComponent(Title)}`;
 
   return (
     <div className="movie-card">
@@ -98,7 +98,7 @@ const MovieCard = ({ movie }) => {
               <a href={fztvseriesUrl} target="_blank" rel="noopener noreferrer">
                 FzTVSeries
               </a>
-              <a href={mkvCageUrl} target="_blank" rel="noopener noreferrer">
+              <a href={awafimURL} target="_blank" rel="noopener noreferrer">
                 MkvCage
               </a>
             </div>
