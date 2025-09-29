@@ -1,9 +1,6 @@
 import React from "react";
 import SearchIcon from "../search.svg";
 import "../App.css";
-
-
-
 const SearchBar = ({ searchTerm, setSearchTerm, searchMovies }) => {
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
