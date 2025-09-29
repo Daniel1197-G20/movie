@@ -4,8 +4,6 @@ const MovieCard = ({ movie }) => {
   const { imdbID, Year, Poster, Title, Type } = movie;
 
   const imdbUrl = `https://www.imdb.com/title/${imdbID}/`;
-
-  // 🎬 Download sites for Movies
   const awafimUrl = `https://tv.awafim.com.ng/?s=${encodeURIComponent(Title)}`;
   const fzmoviesUrl = `https://fzmovies.live//search.php?searchname=${encodeURIComponent(
     Title
@@ -14,25 +12,23 @@ const MovieCard = ({ movie }) => {
     Title
   )}`;
 
-  // 📺 Download sites for Series
   const netnaijaUrl = `https://www.thenetnaija.net/search?t=${encodeURIComponent(
     Title
   )}`;
   const o2tvseriesUrl = `https://o2tvseries4u.com/search/list_all_tv_series.php?search=${encodeURIComponent(
     Title
   )}`;
-  
+
   const fztvseriesUrl = `https://fztvseries.live//search/${encodeURIComponent(
     Title
   )}`;
   const awafimURL = `https://tv.awafim.com.ng/?s=${encodeURIComponent(Title)}`;
 
-  // 🍿 Feature: Trailer Preview
+
   const [showTrailer, setShowTrailer] = useState(false);
 
   return (
     <div className="movie-card">
-      {/* 🎥 Trailer Popup */}
       {showTrailer && (
         <div
           style={{
@@ -89,8 +85,6 @@ const MovieCard = ({ movie }) => {
           </div>
         </div>
       )}
-
-      {/* 🎬 Movie Card Content */}
       <a
         href={imdbUrl}
         target="_blank"
@@ -115,17 +109,13 @@ const MovieCard = ({ movie }) => {
         </div>
       </a>
 
-      {/* 🎬 Actions (Trailer + Download only) */}
       <div
         className="movie-actions"
         style={{ marginTop: 8, display: "flex", gap: 8 }}
       >
-        {/* ▶️ Trailer Preview Button */}
         <button className="btn" onClick={() => setShowTrailer(true)}>
           ▶ Watch Trailer
         </button>
-
-        {/* Conditional Downloads */}
         {Type === "movie" ? (
           <div className="dropdown">
             <button className="btn">⤓ Download Movie</button>
