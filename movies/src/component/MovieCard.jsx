@@ -21,6 +21,7 @@ const MovieCard = ({ movie }) => {
   const o2tvseriesUrl = `https://o2tvseries4u.com/search/list_all_tv_series.php?search=${encodeURIComponent(
     Title
   )}`;
+  
   const fztvseriesUrl = `https://fztvseries.live//search/${encodeURIComponent(
     Title
   )}`;
