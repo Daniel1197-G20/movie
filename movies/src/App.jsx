@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import MovieCard from "./component/MovieCard";
 import SearchBar from "./component/searchBar";
 import "./App.css";
@@ -22,6 +22,10 @@ const App = () => {
     }
   };
 
+  useEffect(() => {
+    searchMovies("The chosen");
+  }, []);
+
   return (
     <div className="app">
       <h1>Screen Verse</h1>
@@ -43,12 +47,13 @@ const App = () => {
           <h2>No movies found</h2>
         </div>
       )}
+
       {movies?.length > 0 && (
         <button
           className="load-more"
           onClick={() => {
             const nextPage = page + 1;
-            searchMovies(searchTerm, false, nextPage);
+            searchMovies(searchTerm || "The chosen", false, nextPage);
             setPage(nextPage);
           }}
         >
